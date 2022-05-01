@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mac_flutter/recipe.dart';
-import 'package:mac_flutter/recipe_detail.dart';
+import 'package:mac_flutter/fooderlich_theme.dart';
+import 'package:mac_flutter/home.dart';
+import 'package:mac_flutter/recipes/recipe.dart';
+import 'package:mac_flutter/recipes/recipe_detail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,60 +13,49 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = ThemeData();
+    final theme = FooderlichTheme.dark();
+
+    const title = 'Flutter Apprentice';
 
     return MaterialApp(
-      title: 'Recipe Calculator',
-      theme: theme.copyWith(
-          colorScheme: theme.colorScheme.copyWith(
-        primary: Colors.grey,
-        secondary: Colors.black,
-      )),
-      home: const MyHomePage(title: 'Recipe Calculator'),
+      title: title,
+      theme: theme,
+      home: const Home(title: title),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: SafeArea(
-        child: ListView.builder(
-          itemCount: Recipe.samples.length,
-          itemBuilder: (BuildContext context, int index) {
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return RecipeDetail(recipe: Recipe.samples[index]);
-                    },
-                  ),
-                );
-              },
-              child: buildRecipeCard(Recipe.samples[index]),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
+// class _MyHomePageState extends State<MyHomePage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(widget.title),
+//       ),
+//       body: SafeArea(
+//         child: ListView.builder(
+//           itemCount: Recipe.samples.length,
+//           itemBuilder: (BuildContext context, int index) {
+//             return GestureDetector(
+//               onTap: () {
+//                 Navigator.push(
+//                   context,
+//                   MaterialPageRoute(
+//                     builder: (context) {
+//                       return RecipeDetail(recipe: Recipe.samples[index]);
+//                     },
+//                   ),
+//                 );
+//               },
+//               child: buildRecipeCard(Recipe.samples[index]),
+//             );
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 Widget buildRecipeCard(Recipe recipe) {
   return Card(
