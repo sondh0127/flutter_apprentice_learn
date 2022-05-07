@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mac_flutter/fooderlich_theme.dart';
-import 'package:mac_flutter/home.dart';
-import 'package:mac_flutter/recipes/recipe.dart';
-import 'package:mac_flutter/recipes/recipe_detail.dart';
+import 'package:mac_flutter/card_app/home.dart';
+import 'package:mac_flutter/recipes_app/recipe.dart';
+import 'package:mac_flutter/recipes_app/recipe_detail.dart';
 
 void main() {
   runApp(const MyApp());

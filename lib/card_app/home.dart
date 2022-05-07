@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mac_flutter/card1.dart';
-import 'package:mac_flutter/card2.dart';
-import 'package:mac_flutter/card3.dart';
+import 'package:mac_flutter/card_app/card1.dart';
+import 'package:mac_flutter/card_app/card2.dart';
+import 'package:mac_flutter/card_app/card3.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
