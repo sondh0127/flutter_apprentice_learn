@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mac_flutter/fooderlich_theme.dart';
 
-class AuthorCard extends StatelessWidget {
+class AuthorCard extends StatefulWidget {
   final String author;
   final String title;
   final ImageProvider? imageProvider;
@@ -9,6 +9,13 @@ class AuthorCard extends StatelessWidget {
   const AuthorCard(
       {Key? key, required this.author, required this.title, this.imageProvider})
       : super(key: key);
+
+  @override
+  State<AuthorCard> createState() => _AuthorCardState();
+}
+
+class _AuthorCardState extends State<AuthorCard> {
+  bool _isFavorited = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,19 +27,19 @@ class AuthorCard extends StatelessWidget {
           Row(
             children: [
               CircleImage(
-                imageProvider: imageProvider,
+                imageProvider: widget.imageProvider,
                 imageRadius: 28,
               ),
               const SizedBox(width: 8),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(author, style: FooderlichTheme.lightTextTheme.headline2),
-                  Text(title, style: FooderlichTheme.lightTextTheme.headline3),
+                  Text(widget.author,
+                      style: FooderlichTheme.lightTextTheme.headline2),
+                  Text(widget.title,
+                      style: FooderlichTheme.lightTextTheme.headline3),
                 ],
               ),
-
-              // TODO: AuthorCard Decorate IconButton
             ],
           ),
           IconButton(
@@ -43,8 +50,15 @@ class AuthorCard extends StatelessWidget {
                 content: Text('Favorite button pressed'),
               );
               ScaffoldMessenger.of(context).showSnackBar(snackbar);
+              setState(() {
+                _isFavorited = !_isFavorited;
+              });
             }),
-            icon: const Icon(Icons.favorite_border),
+            icon: Icon(
+              _isFavorited ? Icons.favorite_border : Icons.favorite,
+              size: 30,
+              color: Colors.purple.shade400,
+            ),
           ),
         ],
       ),
